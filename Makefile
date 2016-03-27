@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-texfile=svm
+texfile=Svichkarev
 
 read:	pdf clean
 	evince ${texfile}.pdf &
