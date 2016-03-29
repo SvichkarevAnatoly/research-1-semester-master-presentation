@@ -13,7 +13,7 @@ pdf:	${texfile}.tex
 clean:
 	@rm -f ${texfile}.{ps,log,aux,out,dvi,bbl,blg}
 	@rm -f ${texfile}.{nav,snm,toc,vrb}
+	@rm -f figs/*.pdf
 
 cleanall:	clean
 	@rm -f ${texfile}.pdf
-	@rm -f figs/*.pdf
