@@ -16,3 +16,4 @@ clean:
 
 cleanall:	clean
 	@rm -f ${texfile}.pdf
+	@rm -f figs/*.pdf
