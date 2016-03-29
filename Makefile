@@ -7,6 +7,8 @@ read:	pdf clean
 	
 pdf:	${texfile}.tex
 	pdflatex ${texfile}.tex
+	bibtex ${texfile}
+	pdflatex ${texfile}.tex
 
 clean:
 	rm -f ${texfile}.{ps,log,aux,out,dvi,bbl,blg}

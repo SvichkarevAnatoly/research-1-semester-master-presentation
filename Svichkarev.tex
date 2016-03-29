@@ -18,6 +18,26 @@
 % Стиль презентации
 \usetheme{Warsaw}
 \usecolortheme{crane}
+% Стиль цитирования
+\bibliographystyle{utf8gost71u}
+
+% Переопределение настроек цитирование на схожие с article
+\usepackage[numbers]{natbib}
+% make bibliography entries smaller
+\renewcommand\bibfont{\scriptsize}
+% If you have more than one page of references, you want to tell beamer
+% to put the continuation section label from the second slide onwards
+\setbeamertemplate{frametitle continuation}[from second]
+% Now get rid of all the colours
+\setbeamercolor*{bibliography entry title}{fg=black}
+\setbeamercolor*{bibliography entry author}{fg=black}
+\setbeamercolor*{bibliography entry location}{fg=black}
+\setbeamercolor*{bibliography entry note}{fg=black}
+% and kill the abominable icon
+\setbeamertemplate{bibliography item}{}
+
+% Замена стандартного (Cont.) на русский язык
+\setbeamertemplate{frametitle continuation}[from second][(продолжение)]
 
 \begin{document}
 
@@ -177,17 +197,12 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Используемая литература}
-\begin{thebibliography}{Dijkstra, 1982}
-    \bibitem[Salomaa, 1973]{Salomaa1973}
-        A.~Salomaa.
-        \newblock {\em Formal Languages}.
-        \newblock Academic Press, 1973.
-    \bibitem[Dijkstra, 1982]{Dijkstra1982}
-        E.~Dijkstra.
-        \newblock Smoothsort, an alternative for sorting in situ.
-        \newblock {\em Science of Computer Programming}, 1(3):223--233, 1982.
-\end{thebibliography}
+% если не хватит слайда - продолжит на следующих
+% t - пытается равномерно распределить
+\begin{frame}[t,allowframebreaks]{Используемая литература}
+    \nocite{Kozlov11, Kozlov13, Storn95, pisarev2015tracker,
+    GLib, zaharie2002parameter, fan2003trigonometric, *}
+    \bibliography{citations}
 \end{frame}
 
 \begin{frame}{Благодарности}
