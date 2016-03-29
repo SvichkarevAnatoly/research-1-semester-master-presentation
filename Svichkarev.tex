@@ -9,7 +9,11 @@
 \usepackage{hyphenat}
 % \hyphenation{ма-те-ма-ти-ка вос-ста-нав-ли-вать}
 
+% путь к папке с изображениями
 \graphicspath{{./figs/}}
+
+% выравнивание по центру подписей к картинкам
+\usepackage[justification=centering]{caption}
 
 % Стиль презентации
 \usetheme{Warsaw}
@@ -102,9 +106,40 @@
 \end{frame}
 
 \begin{frame}{Методика экспериментов}
+    \begin{figure}
+        \makebox[\textwidth]{
+            \includegraphics[width=0.5\paperwidth]{m5}
+            \includegraphics[width=0.5\paperwidth]{m10}
+        }
+        \caption{Медиана и полтора межквартильных расстояния
+            времени выполнения при коэффициенте размера популяции
+            5 и 10 соответственно}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Статистическая обработка}
+    График 95\% доверительных интервалов по критерию Тьюки.
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=.8\textheight]{tukey}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item \textbf{\textcolor{red}{Красной рамка:}}\\
+                    старая реализация,
+                    конкуренция интерпретаторов
+                    за ресурсы при инициализации;
+                \item \textbf{\textcolor{blue}{Синяя рамка:}}\\
+                    новая реализация, единичная инициализация;
+                \item \textbf{\textcolor{yellow}{Жёлтая рамка:}}\\
+                    пары из старой и новой реализаций,
+                    оптимизация статистически значима.
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Выводы}
