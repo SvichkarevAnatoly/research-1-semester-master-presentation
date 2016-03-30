@@ -43,6 +43,26 @@
 \usepackage{caption}
 \captionsetup[figure]{labelformat=empty}
 
+% Убрать управляющие значки внизу слайдов
+\beamertemplatenavigationsymbolsempty
+
+% Переопределение нижней статусной строки,
+% используется здесь для комбинации автора, института, темы и номера слайда
+\setbeamertemplate{footline}{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshortauthor \hspace*{1em} (\insertshortinstitute)
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \insertframenumber{} / \inserttotalframenumber 
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+
 \begin{document}
 
 % Оформление титульного листа
