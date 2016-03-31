@@ -21,6 +21,10 @@
 % Стиль цитирования
 \bibliographystyle{utf8gost71u}
 
+\usepackage{IEEEtrantools} % для создания многострочных математических формул
+\usepackage{amsmath} % для математических формул и для автоматического добавления скобок при цитировании
+\usepackage{commath} % для знака модуля
+
 % Переопределение настроек цитирование на схожие с article
 \usepackage[numbers]{natbib}
 % make bibliography entries smaller
@@ -325,6 +329,94 @@
     \nocite{Kozlov11, Kozlov13, Storn95, pisarev2015tracker,
     GLib, zaharie2002parameter, fan2003trigonometric}
     \bibliography{citations}
+\end{frame}
+
+\begin{frame}[noframenumbering]{Скрещивание с учётом значения функционала}
+    Мутантный вектор:
+    \begin{equation*}
+        v = v_1 + S \cdot (v_2 - v_3),
+    \end{equation*}
+
+    где \begin{math}S\end{math} некоторая положительная константа масштабирования.
+    \bigskip
+
+    Второй мутантный вектор:
+    \begin{IEEEeqnarray*}{rCl}
+        z & = & \frac{v_1 + v_2 + v_3}{3}
+        + (s_2 - s_1)(v_1 - v_2) \\
+        && + (s_3 - s_2)(v_2 - v_3)
+        + (s_1 - s_3)(v_3 - v_1), \nonumber
+    \end{IEEEeqnarray*}
+
+    где
+
+    \begin{equation*}
+        s_i = \frac{\abs{F(q_i)}}
+        {\abs{F(q_1)} + \abs{F(q_2)} + \abs{F(q_3)}},
+    \end{equation*}
+
+    для \begin{math}i = 1, 2, 3\end{math}.
+\end{frame}
+
+\begin{frame}[noframenumbering]{Скрещивание для поддержания разнообразия индивидов}
+    Разнообразие популяции можно определить
+    через дисперсии параметров популяции:
+
+    \begin{equation*}
+        var_j = \frac{1}{NP} \sum_{i = 0}^{NP - 1}
+        \left(q_{i, j} - \frac{1}{NP} \sum_{k = 0}^{NP - 1}q_{k, j}\right)^2
+    \end{equation*}
+    где $j = 0, \dots, I - 1; I$ --- размер вектора параметров.
+
+    \begin{equation*}
+    S_j = \left\{ \,
+        \begin{IEEEeqnarraybox}[][c]{l?s}
+            \IEEEstrut
+            \sqrt{\frac{NP \cdot (c_j - 1) + p_j \cdot (2 - p_j)}
+            {2 \cdot NP \cdot p_j}} &
+            если $NP \cdot (c_j - 1) + p_j \cdot (2 - p_j) \geq 0$, \\
+            S_{inf} & иначе.
+            \IEEEstrut
+        \end{IEEEeqnarraybox}
+        \right.
+    \end{equation*}
+
+    где
+    \begin{equation*}
+        c_j^{new} = \gamma \cdot \left(\frac{var_j}{var_j^{new}}\right)
+    \end{equation*}
+\end{frame}
+
+\begin{frame}[noframenumbering]{Скрещивание для поддержания разнообразия индивидов}
+    \begin{equation*}
+    S_j = \left\{ \,
+        \begin{IEEEeqnarraybox}[][c]{l?s}
+            \IEEEstrut
+            \sqrt{\frac{NP \cdot (c_j - 1) + p_j \cdot (2 - p_j)}
+            {2 \cdot NP \cdot p_j}} &
+            если $NP \cdot (c_j - 1) + p_j \cdot (2 - p_j) \geq 0$, \\
+            S_{inf} & иначе.
+            \IEEEstrut
+        \end{IEEEeqnarraybox}
+        \right.
+    \end{equation*}
+
+    \begin{equation*}
+        p_j = \left\{ \,
+            \begin{IEEEeqnarraybox}[][c]{l?s}
+                \IEEEstrut
+                -(NP \cdot S_j^2 - 1) +
+                \sqrt{(NP \cdot S_j^2 - 1)^2 - NP \cdot (1 - c_j)} &
+                если $c_j \geq 1$, \\
+                p_{inf} & иначе.
+                \IEEEstrut
+            \end{IEEEeqnarraybox}
+            \right.
+    \end{equation*}
+    где
+    \begin{equation*}
+        c_j^{new} = \gamma \cdot \left(\frac{var_j}{var_j^{new}}\right)
+    \end{equation*}
 \end{frame}
 
 \end{document}
